@@ -2,10 +2,10 @@
   "name": "billomat-document-change-tracker",
   "version": "0.0.1",
   "description": "Tracks the changes of Billomat documents",
-  "main": "index.js",
+  "main": "app/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "./node_modules/.bin/nodemon index.js --exec babel-node --presets es2015,stage-2"
+    "start": "./node_modules/.bin/nodemon app/index.js --exec babel-node --presets es2015,stage-2"
   },
   "repository": {
     "type": "git",
@@ -23,6 +23,8 @@
   },
   "homepage": "https://github.com/bykof/billomat-document-change-tracker#readme",
   "dependencies": {
+    "moment": "^2.18.1",
+    "mongodb": "^2.2.30",
     "restify": "^5.0.1"
   },
   "devDependencies": {
