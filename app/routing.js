@@ -9,7 +9,15 @@ export const setupRouting = () => {
   const billomatWebhookHandler = new BillomatWebhookHandler();
   const objectSearcher = new ObjectSearcher();
   const db = DbHandler.db;
-
+  
+  server.use(
+    function crossOrigin(req,res,next){
+      res.header("Access-Control-Allow-Origin", "*");
+      res.header("Access-Control-Allow-Headers", "X-Requested-With");
+      return next();
+    }
+  );
+  
   server.use(plugins.queryParser({
     mapParams: true
   }));
@@ -40,7 +48,7 @@ export const setupRouting = () => {
     );
     return next();
   });
-
+  
   server.listen(
     8080, () => {
       console.log('%s listening at %s', server.name, server.url);
