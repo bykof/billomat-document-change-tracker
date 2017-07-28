@@ -26,7 +26,7 @@ export const setupRouting = () => {
   }));
 
   server.post('/webhooks/billomat', (req, res, next) => {
-    billomatWebhookHandler.handle(req.body, req.headers['X-Billomat-Webhook-Event']);
+    billomatWebhookHandler.handle(req.body, req.headers['x-billomat-webhook-event']);
     res.send();
     return next();
   });
