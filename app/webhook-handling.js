@@ -26,6 +26,7 @@ export class BillomatWebhookHandler {
           collection.updateOne({_id: result._id}, {
             document: result.document,
             changes: changes,
+            originalDocument: result.originalDocument,
           });
         } else {
           collection.insertOne({
@@ -36,7 +37,8 @@ export class BillomatWebhookHandler {
                 date: moment().unix(),
                 eventType: eventTypeName
               }
-            ]
+            ],
+            originalDocument: webhookData[collectionName],
           });
         }
       });
