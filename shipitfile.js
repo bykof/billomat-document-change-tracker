@@ -13,14 +13,14 @@ module.exports = function (shipit) {
     return shipit.remote('cd /var/www/backend && npm install');
   });
   
-  shipit.blTask('start', function () {
-    return shipit.remote('cd /var/www/backend && npm run start-deamon');
+  shipit.blTask('restart', function () {
+    return shipit.remote('systemctl restart backend');
   });
   
   
   shipit.task('deploy', function () {
     shipit.start('move');
     shipit.start('install');
-    shipit.start('start');
+    shipit.start('restart');
   });
 };
