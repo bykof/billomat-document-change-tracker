@@ -5,7 +5,8 @@
   "main": "app/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "./node_modules/.bin/nodemon app/index.js --exec babel-node --presets es2015,stage-2"
+    "start": "./node_modules/.bin/nodemon app/index.js --exec babel-node --presets es2015,stage-2",
+    "prod": "babel-node --presets es2015,stage-2 app/index.js"
   },
   "repository": {
     "type": "git",

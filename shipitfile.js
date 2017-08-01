@@ -1,8 +1,13 @@
 module.exports = function (shipit) {
   shipit.initConfig({
     staging: {
-      servers: '35.190.196.235'
+      servers: '35.190.196.235',
+      workspace: '/var/www/backend'
     }
+  });
+  
+  shipit.blTask('compile', function () {
+    return shipit.local('babel app -d dist');
   });
   
   shipit.blTask('move', function () {
@@ -10,17 +15,15 @@ module.exports = function (shipit) {
   });
   
   shipit.blTask('install', function () {
-    return shipit.remote('cd /var/www/backend && npm install');
+    return shipit.remote('npm install', {cwd: '/var/www/backend'});
   });
   
   shipit.blTask('restart', function () {
-    return shipit.remote('systemctl restart backend');
+    return shipit.remote('sudo systemctl restart backend');
   });
   
   
   shipit.task('deploy', function () {
-    shipit.start('move');
-    shipit.start('install');
-    shipit.start('restart');
+    shipit.start(['compile', 'move', 'install', 'restart']);
   });
 };
